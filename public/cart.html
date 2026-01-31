@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart - Atera</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Momo+Trust+Display&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    body { background-color: #121212; color: #fff; font-family: 'Momo Trust Display', sans-serif; }
+    header { background-color: #1e1e1e; padding: 10px 0; }
+    .profile { display: flex; align-items: center; margin-bottom: 30px; }
+    .profile img { width: 80px; height: 80px; border-radius: 50%; margin-right: 20px; border: 2px solid #fff; }
+    .profile h2 { margin: 0; }
+    .game-card { background-color: #1f1f1f; border-radius: 8px; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; display: flex; align-items: center; padding: 10px; margin-bottom: 15px; }
+    .game-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,255,255,0.3); }
+    .game-card img { width: 80px; height: 80px; border-radius: 5px; object-fit: cover; margin-right: 15px; }
+    .game-info { flex: 1; }
+    .game-info h5 { margin: 0 0 5px 0; }
+    .game-info p { margin: 0; color: #aaa; }
+    .btn-remove { background-color: #ff4d4d; border: none; color: #fff; transition: 0.2s; }
+    .btn-remove:hover { background-color: #ff1a1a; }
+    .cart-container { max-width: 800px; margin: auto; padding: 20px; }
+    footer { text-align: center; padding: 15px 0; background-color: #1e1e1e; margin-top: 50px; }
+    
+  </style>
+</head>
+<body>
+
+  <header class="bg-dark text-white p-3 sticky-top">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a href="index.html" class="d-flex align-items-center text-white text-decoration-none">
+                <img src="images/logo.png" alt="Atera Logo" style="height: 50px; margin-right: 10px;">
+                <h2 class="m-0">Atera</h2>
+            </a>
+
+            <nav class="ms-auto">
+                <ul class="nav">
+                    <li class="nav-item"><a href="index.html" class="nav-link text-white">Browse</a></li>
+                    <li class="nav-item"><a href="products.html" class="nav-link text-white">Recommendations</a></li>
+                    <li class="nav-item"><a href="categories.html" class="nav-link text-white">Categories</a></li>
+                    <li class="nav-item position-relative">
+  <a href="cart.html" class="nav-link text-white">
+    <i class="bi bi-cart3"></i>
+    <span id="cartCount" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+      0
+    </span>
+  </a>
+</li>
+
+                    <li class="nav-item"><a href="contact.html" class="nav-link text-white active">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+<main class="cart-container">
+  <div class="profile">
+    <img src="images/avatar.jpg" alt="User Avatar">
+    <div>
+      <h2>Aleph</h2>
+      <p>Level 27 | 1500 XP</p>
+    </div>
+  </div>
+
+  <h3>Your Games in Cart</h3>
+  <div id="cartGames"></div>
+
+  <h3 class="mt-5">Played Games</h3>
+<div id="playedGames"></div>
+
+
+</main>
+
+<footer>
+  <p>© 2025 Atera — All rights reserved</p>
+</footer>
+
+<script>
+  const sampleGames = [
+    { title: "Doom Eternal", img: "images/doom.jpg", price: "$59.99" },
+    { title: "Skyrim", img: "images/skyrim.jpg", price: "$39.99" },
+    { title: "The Witcher 3", img: "images/thewitcher3.jpg", price: "$49.99" }
+  ];
+
+  // Загружаем корзину из localStorage или добавляем sampleGames
+  let cart = JSON.parse(localStorage.getItem('cart')) || sampleGames;
+  const cartContainer = document.getElementById('cartGames');
+
+  function renderCart() {
+    cartContainer.innerHTML = '';
+    if (cart.length === 0) {
+      cartContainer.innerHTML = '<p class="text-center text-muted mt-3">Your cart is empty.</p>';
+      return;
+    }
+    cart.forEach((game, index) => {
+      const card = document.createElement('div');
+      card.className = 'game-card';
+      card.innerHTML = `
+        <img src="${game.img}" alt="${game.title}">
+        <div class="game-info">
+          <h5>${game.title}</h5>
+          <p>${game.price}</p>
+        </div>
+        <button class="btn btn-remove" onclick="removeFromCart(${index})">Remove</button>
+      `;
+      cartContainer.appendChild(card);
+    });
+  }
+
+  function removeFromCart(index) {
+    cart.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    renderCart();
+  }
+
+  renderCart();
+
+  const playedGamesData = [
+  { title: "Doom Eternal", img: "images/doom.jpg", hoursPlayed: 120, lastPlayed: "2025-11-01" },
+  { title: "Skyrim", img: "images/skyrim.jpg", hoursPlayed: 300, lastPlayed: "2025-10-25" },
+  { title: "The Witcher 3", img: "images/thewitcher3.jpg", hoursPlayed: 210, lastPlayed: "2025-10-28" }
+];
+
+const playedContainer = document.getElementById('playedGames');
+
+function renderPlayedGames() {
+  playedContainer.innerHTML = '';
+  const now = new Date();
+
+  playedGamesData.forEach(game => {
+    const lastPlayedDate = new Date(game.lastPlayed);
+    const diffDays = Math.floor((now - lastPlayedDate) / (1000 * 60 * 60 * 24));
+
+    const card = document.createElement('div');
+    card.className = 'game-card';
+    card.innerHTML = `
+      <img src="${game.img}" alt="${game.title}">
+      <div class="game-info">
+        <h5>${game.title}</h5>
+        <p>Hours Played: ${game.hoursPlayed} | Last Played: ${diffDays} days ago</p>
+      </div>
+    `;
+    playedContainer.appendChild(card);
+  });
+}
+
+renderPlayedGames();
+
+// === Обновление значка корзины ===
+const cartCount = document.getElementById('cartCount');
+
+function updateCartCount() {
+  cartCount.textContent = cart.length;
+}
+
+// Вызываем при загрузке
+updateCartCount();
+
+// При удалении из корзины обновляем тоже
+function removeFromCart(index) {
+  cart.splice(index, 1);
+  localStorage.setItem('cart', JSON.stringify(cart));
+  renderCart();
+  updateCartCount();
+}
+
+
+</script>
+
+</body>
+</html>

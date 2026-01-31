@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Battlefield 6 on Atera</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Momo+Trust+Display&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" type="image/png" href="images/logo.png">
+<style>
+body { font-family: 'Momo Trust Display', sans-serif; }
+.carousel-inner video { border-radius: 10px; cursor: pointer; }
+.video-controls { bottom: 10px; }
+#playPause, #muteBtn { width: 40px; height: 40px; }
+#volumeSlider { width: 120px; }
+.card { border-radius: 10px; }
+.review-slide img { width: 50px; height: 50px; border-radius: 50%; }
+.add-cart { transition: transform 0.2s; }
+.add-cart:active { transform: scale(1.1); }
+.tab-content { background-color: #2a2a2a; border-radius: 10px; padding: 15px; color: #fff; }
+.nav-tabs .nav-link.active { background-color: #6c1b9f; color: #fff; }
+</style>
+</head>
+<body class="bg-dark text-white">
+
+<header class="bg-dark text-white p-3 sticky-top">
+  <div class="container d-flex justify-content-between align-items-center">
+    <a href="index.html" class="d-flex align-items-center text-white text-decoration-none">
+      <img src="images/logo.png" alt="Atera Logo" style="height: 50px; margin-right: 10px;">
+      <h2 class="m-0">Atera</h2>
+    </a>
+    <nav class="ms-auto me-3">
+      <ul class="nav">
+        <li class="nav-item"><a href="index.html" class="nav-link text-white">Browse</a></li>
+        <li class="nav-item"><a href="products.html" class="nav-link text-white">Recommendations</a></li>
+        <li class="nav-item"><a href="categories.html" class="nav-link text-white">Categories</a></li>
+        <li class="nav-item"><a href="cart.html" class="nav-link text-white">Cart</a></li>
+        <li class="nav-item"><a href="contact.html" class="nav-link text-white">Contact</a></li>
+      </ul>
+    </nav>
+    <a href="index.html" class="btn btn-outline-light">Back to Store</a>
+  </div>
+</header>
+
+<main class="container mt-4">
+
+<h1 class="text-center mb-4">Battlefield 6</h1>
+
+<div id="carouselExample" class="carousel slide mb-4" data-bs-ride="false">
+  <div class="carousel-inner">
+    <div class="carousel-item active position-relative">
+      <video id="battleVideo" class="d-block w-100 rounded" autoplay muted playsinline>
+        <source src="images/battlefieldtrailer.mp4" type="video/mp4">
+      </video>
+      <div class="video-controls d-flex gap-2 position-absolute bottom-0 start-50 translate-middle-x mb-3">
+        <button id="playPause" class="btn btn-light btn-sm"><i class="bi bi-pause"></i></button>
+        <button id="muteBtn" class="btn btn-light btn-sm"><i class="bi bi-volume-up"></i></button>
+        <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="1" class="form-range w-25">
+        <button id="fullscreenBtn" class="btn btn-light btn-sm"><i class="bi bi-arrows-fullscreen"></i></button>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="images/BattlefieldImage1.jpg" class="d-block w-100 rounded" alt="Screenshot 1">
+    </div>
+    <div class="carousel-item">
+      <img src="images/BattlefieldImage2.jpg" class="d-block w-100 rounded" alt="Screenshot 2">
+    </div>
+    <div class="carousel-item">
+      <img src="images/BattlefieldImage3.jpg" class="d-block w-100 rounded" alt="Screenshot 3">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+</div>
+
+<div class="card bg-secondary mb-4 p-3">
+  <h3>About This Game</h3>
+  <p>The ultimate all-out warfare experience. Fight in high-intensity infantry combat. Rip through the skies in aerial dogfights. Demolish your environment for a strategic advantage. Harness complete control over every action and movement using the Kinesthetic Combat System. In a war of tanks, fighter jets, and massive combat arsenals, the deadliest weapon is your squad. This is Battlefield 6.</p>
+</div>
+
+<div class="mb-4">
+  <ul class="nav nav-tabs" id="sysTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="min-tab" data-bs-toggle="tab" data-bs-target="#minimum" type="button">Minimum</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="rec-tab" data-bs-toggle="tab" data-bs-target="#recommended" type="button">Recommended</button>
+    </li>
+  </ul>
+  <div class="tab-content mt-3">
+    <div class="tab-pane fade show active" id="minimum">
+      <ul>
+        <li>OS: Windows 10</li>
+        <li>Processor: Intel Core i5-8400, AMD Ryzen 5 2600</li>
+        <li>Memory: 16 GB RAM</li>
+        <li>Graphics: Nvidia RTX 2060, AMD Radeon RX 5600 XT 6GB, Intel Arc A380</li>
+        <li>DirectX: Version 12</li>
+        <li>Network: Broadband Internet</li>
+        <li>Storage: 55 GB</li>
+      </ul>
+    </div>
+    <div class="tab-pane fade" id="recommended">
+      <ul>
+        <li>OS: Windows 11</li>
+        <li>Processor: Intel Core i7-10700, AMD Ryzen 7 3700X</li>
+        <li>Memory: 16 GB RAM</li>
+        <li>Graphics: Nvidia RTX 3060Ti, AMD Radeon RX 6700-XT, Intel Arc B580</li>
+        <li>DirectX: Version 12</li>
+        <li>Network: Broadband Internet</li>
+        <li>Storage: 80 GB</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="card bg-secondary mb-4 p-3">
+  <h3>Reviews</h3>
+  <div id="reviewCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner text-center">
+      <div class="carousel-item active review-slide">
+        <img src="images/avatar1.jpg" alt="User 1">
+        <p>⭐ 4.7/5 — “Epic gameplay and next-gen visuals.”</p>
+      </div>
+      <div class="carousel-item review-slide">
+        <img src="images/avatar2.jpg" alt="User 2">
+        <p>⭐ 4.6/5 — “One of the best FPS experiences in years.”</p>
+      </div>
+      <div class="carousel-item review-slide">
+        <img src="images/avatar3.jpg" alt="User 3">
+        <p>⭐ 4.8/5 — “Incredible graphics and multiplayer battles!”</p>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#reviewCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#reviewCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+</div>
+
+<div class="text-center mb-4">
+  <h2>$59.99</h2>
+  <button class="btn btn-primary btn-lg add-cart">Add to Cart</button>
+</div>
+
+</main>
+
+<footer class="bg-dark text-white text-center p-3 mt-5">
+<p>© 2025 Atera — All rights reserved.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const video = document.getElementById('battleVideo');
+  const carouselElement = document.querySelector('#carouselExample');
+  const carousel = new bootstrap.Carousel(carouselElement, { interval: false });
+  const playPause = document.getElementById('playPause');
+  const muteBtn = document.getElementById('muteBtn');
+  const volumeSlider = document.getElementById('volumeSlider');
+  const fullscreenBtn = document.getElementById('fullscreenBtn');
+
+  video.addEventListener('click', () => {
+    if(video.paused) { video.play(); playPause.innerHTML='<i class="bi bi-pause"></i>'; }
+    else { video.pause(); playPause.innerHTML='<i class="bi bi-play"></i>'; }
+  });
+
+  playPause.addEventListener('click', () => {
+    if(video.paused) { video.play(); playPause.innerHTML='<i class="bi bi-pause"></i>'; }
+    else { video.pause(); playPause.innerHTML='<i class="bi bi-play"></i>'; }
+  });
+
+  muteBtn.addEventListener('click', () => {
+    video.muted = !video.muted;
+    muteBtn.innerHTML = video.muted ? '<i class="bi bi-volume-mute"></i>' : '<i class="bi bi-volume-up"></i>';
+  });
+
+  volumeSlider.addEventListener('input', () => {
+    video.volume = volumeSlider.value;
+    if(video.volume>0) { video.muted=false; muteBtn.innerHTML='<i class="bi bi-volume-up"></i>'; }
+    else { video.muted=true; muteBtn.innerHTML='<i class="bi bi-volume-mute"></i>'; }
+  });
+
+  fullscreenBtn.addEventListener('click', () => {
+    if(video.requestFullscreen) video.requestFullscreen();
+    else if(video.webkitRequestFullscreen) video.webkitRequestFullscreen();
+    else if(video.msRequestFullscreen) video.msRequestFullscreen();
+  });
+
+  video.addEventListener('ended', () => setTimeout(() => carousel.next(), 1000));
+  carouselElement.addEventListener('slide.bs.carousel', () => video.pause());
+  carouselElement.addEventListener('slid.bs.carousel', (e) => {
+    const active = e.relatedTarget.querySelector('video');
+    if(active) active.play();
+  });
+});
+</script>
+<script>
+let lastScrollTop = 0;
+const header = document.querySelector("header");
+
+window.addEventListener("scroll", () => {
+  let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  if (scrollTop > lastScrollTop && scrollTop > 100) {
+    header.classList.add("hide");
+  } else {
+    header.classList.remove("hide");
+  }
+  lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+});
+</script>
+
+<style>
+header.hide {
+  transform: translateY(-100%);
+  transition: transform 0.6s ease-in-out;
+}
+header {
+  transition: transform 0.6s ease-in-out;
+}
+</style>
+
+</body>
+</html>

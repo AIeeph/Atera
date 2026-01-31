@@ -1,0 +1,569 @@
+body {
+  font-family: "Momo Trust Display", sans-serif;
+  background-color: #121212;
+  color: #f5f5f5;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: "Momo Trust Display", sans-serif;
+  font-weight: 600;
+}
+
+header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.4s ease-in-out, background-color 0.4s ease;
+}
+
+header.hide {
+  transform: translateY(-100%);
+}
+
+button, .nav-link {
+  font-family: "Momo Trust Display", sans-serif;
+  font-weight: 500;
+}
+
+.card {
+  background-color: #1e1e1e;
+  color: #fff;
+  border: none;
+}
+
+.card img {
+  border-radius: 10px 10px 0 0;
+}
+
+.banner img {
+  max-height: 500px;
+  object-fit: cover;
+}
+.banner h1, .banner p {
+  font-family: "Momo Trust Display", sans-serif;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center; 
+  margin-top: 20px;
+}
+
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.5rem 1.25rem;
+  font-family: "Momo Trust Display", sans-serif;
+  font-size: 15px;
+  color: #fff;
+  background: rgba(0,0,0,0.1);
+  border: 1px solid #fff;
+  border-radius: 8px;
+  box-shadow: 0px 2px 0px rgba(0,0,0,0.5);
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.button:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 4px 0px rgba(0,0,0,0.5);
+}
+
+.button .icon {
+  transition: transform 0.3s ease-in-out;
+}
+
+.button:hover .icon {
+  transform: translateX(4px);
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 100%;
+  top: 0;
+  left: -100px;
+  background: linear-gradient(120deg, rgba(255,255,255,0) 30%, rgba(255,255,255,0.8), rgba(255,255,255,0) 70%);
+  opacity: 0.6;
+}
+
+.button:hover::before {
+  animation: shine 1s ease-out infinite;
+}
+
+@keyframes shine {
+  0% { left: -100px; }
+  60% { left: 100%; }
+  100% { left: 100%; }
+}
+
+.logo-header img.logo {
+  height: 40px;
+}
+
+.search-bar {
+  width: 250px; /* можно изменить ширину */
+}
+
+.search-bar input {
+  border-radius: 20px;
+  padding: 5px 15px;
+  background-color: #1e1e1e;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+.search-bar input::placeholder {
+  color: #bbb;
+}
+
+
+#suggestions {
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+}
+
+#suggestions li {
+  cursor: pointer;
+  padding: 0.5rem;
+  background-color: #1e1e1e;
+  color: #fff;
+  border-bottom: 1px solid #333;
+}
+
+#suggestions li:hover {
+  background-color: #333;
+}
+
+#soundBtn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: none;
+  color: white;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+#soundBtn:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+#videoControls {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 8px 15px;
+  border-radius: 30px;
+  z-index: 5;
+}
+
+#videoControls button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#videoControls button:hover {
+  color: #0d6efd;
+}
+
+#volumeSlider {
+  width: 100px;
+  cursor: pointer;
+}
+
+.video-controls {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+  padding: 8px 12px;
+  transition: opacity 0.3s;
+}
+
+.video-controls:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+/* === Reviews Section === */
+.card {
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.card h3 {
+  font-family: 'Momo Trust Display', sans-serif;
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  color: #ffd700;
+}
+
+.card p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.card small {
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+/* Hover effect */
+.card:hover {
+  transform: translateY(-3px);
+  transition: 0.3s ease;
+}
+
+/* === Reviews Stars === */
+.card p b {
+  color: #ffd700;
+  font-weight: 600;
+}
+
+/* === Backgrounds for consistency === */
+.bg-secondary {
+  background-color: #2b2b2b !important;
+}
+
+/* === Purchase Button === */
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 10px 25px;
+  transition: 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.card {
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.card h3 {
+  font-family: 'Momo Trust Display', sans-serif;
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  color: #ffd700;
+}
+
+.card p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.card small {
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  transition: 0.3s ease;
+}
+
+.card p b {
+  color: #ffd700;
+  font-weight: 600;
+}
+
+.bg-secondary {
+  background-color: #2b2b2b !important;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 10px 25px;
+  transition: 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+footer {
+  font-family: 'Momo Trust Display', sans-serif;
+  letter-spacing: 1px;
+  font-size: 1rem;
+}
+
+.purchase-section {
+  background-color: #2b2b2b;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  margin-top: 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.purchase-section h2 {
+  font-family: 'Momo Trust Display', sans-serif;
+  color: #ffd700;
+  margin-bottom: 15px;
+}
+
+.purchase-section .btn-primary {
+  padding: 12px 30px;
+  font-size: 1.2rem;
+  border-radius: 10px;
+}
+
+.game-card {
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.game-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #0d6efd;
+}
+
+.quick-view-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: none;
+}
+
+.game-card:hover .quick-view-btn {
+  display: block;
+}
+
+.deal-card {
+  position: relative;
+  text-align: center;
+}
+
+#countdown {
+  color: yellow;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.game-screenshots {
+  position: relative;
+  overflow: hidden;
+  height: 200px; /* или любую желаемую высоту */
+  border-radius: 10px 10px 0 0;
+}
+
+.game-screenshots img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+.game-screenshots img.main-img {
+  z-index: 1;
+  opacity: 1;
+}
+
+.game-screenshots img.hover-img {
+  z-index: 2;
+}
+
+
+.game-card:hover .game-screenshots img.main-img {
+  opacity: 0;
+}
+
+.quick-view-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 5; /* выше всех скринов */
+  display: none;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.deal-card {
+  position: relative;
+  text-align: center;
+  animation: pulse 2s infinite;
+}
+
+#countdown {
+  display: inline-block;
+  color: yellow;
+  font-weight: bold;
+  transition: transform 0.2s ease;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 10px #0103ac; }
+  50% { box-shadow: 0 0 20px #015697; }
+  100% { box-shadow: 0 0 10px #04aaa7; }
+}
+
+
+.nav-item.dropdown {
+  position: relative;
+}
+
+.dropdown-cards {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: flex;
+  gap: 15px;
+  background-color: #1e1e1e;
+  padding: 15px;
+  border-radius: 10px;
+  display: none; /* скрыто по умолчанию */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  z-index: 1000;
+}
+
+.card-category {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  width: 100px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card-category img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.card-category span {
+  margin-top: 5px;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.card-category:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px #0d6efd;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.dropdown-cards {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: flex;
+  gap: 15px;
+  background-color: #1e1e1e;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  z-index: 1000;
+
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: max-height 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
+}
+
+.dropdown-cards.show {
+  max-height: 500px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.arrow.rotated {
+  transform: rotate(180deg);
+}
+
+.dropdown-toggle {
+    cursor: pointer;      /* меняет курсор на руку */
+    padding: 10px 15px;   /* увеличивает область для клика */
+    display: inline-block;
+}
+
+.dropdown-menu {
+    position: absolute;
+    z-index: 1000; /* или выше, если есть другие элементы поверх */
+}
+
+nav ul.nav {
+    display: flex;
+    gap: 5px; /* расстояние между пунктами меню */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul.nav li.nav-item {
+    margin: 0; /* обнуляем старые отступы */
+}
+
+nav ul.nav li.nav-item a.nav-link {
+    padding: 10px 15px; /* одинаковый паддинг у всех ссылок */
+    display: block;      /* чтобы padding работал по всей области */
+    text-decoration: none;
+}
+

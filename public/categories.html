@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Category - Games</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Momo+Trust+Display&display=swap" rel="stylesheet">
+  <!-- AOS Animation -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <style>
+    body { font-family: 'Momo Trust Display', sans-serif; background-color: #121212; color: #fff; }
+    header { background-color: #1e1e1e; }
+    .card { background-color: #2c2c2c; color: #fff; transition: transform 0.3s, box-shadow 0.3s; }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.6); }
+    .dropdown-cards { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; background-color: #1e1e1e; padding: 10px; border-radius: 5px; z-index: 1000; }
+    .dropdown:hover .dropdown-cards { display: flex; }
+    .card-category a { color: #fff; text-decoration: none; padding: 8px; display: block; }
+    .card-category a:hover { background-color: #333; border-radius: 5px; }
+    h1 { margin-bottom: 40px; text-align: center; }
+  </style>
+</head>
+<body>
+
+<header class="p-3 sticky-top">
+  <div class="container d-flex justify-content-between align-items-center">
+    <a href="index.html" class="d-flex align-items-center text-white text-decoration-none">
+      <img src="images/logo.png" alt="Atera Logo" style="height: 50px; margin-right: 10px;">
+      <h2 class="m-0">Atera</h2>
+    </a>
+
+    <nav class="ms-auto">
+      <ul class="nav">
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle text-white">Categories</a>
+          <div class="dropdown-cards">
+            <div class="card-category"><a href="?genre=action">Action</a></div>
+            <div class="card-category"><a href="?genre=adventure">Adventure</a></div>
+            <div class="card-category"><a href="?genre=rpg">RPG</a></div>
+            <div class="card-category"><a href="?genre=strategy">Strategy</a></div>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  
+
+  
+</header>
+
+<main class="container my-5">
+  <h1 id="categoryTitle"></h1>
+  <div class="row g-4" id="gamesContainer"></div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+<script>
+AOS.init({ duration: 1000, once: true });
+
+const urlParams = new URLSearchParams(window.location.search);
+const genre = urlParams.get('genre') || 'action';
+
+document.getElementById('categoryTitle').innerText = `${genre.toUpperCase()}`;
+
+const games = {
+  action: [
+    { title: "Doom Eternal", img: "images/doom.jpg", description: "Hell’s armies have invaded Earth. Become the Slayer in an epic single-player campaign to conquer demons across dimensions and stop the final destruction of humanity." , audio: "audio/doom.mp3" },
+    { title: "Call of Duty", img: "images/callofduty.jpg", description: "In Call of Duty®: Black Ops 7, Treyarch and Raven Software are bringing players the most mind-bending Black Ops ever across an innovative Co-Op Campaign, an electrifying Multiplayer experience, and the legendary Round-Based Zombies mode.",}
+  ],
+  adventure: [
+    { title: "Uncharted 4", img: "images/uncharted4.jpg", description: "Action-adventure game developed by Naughty Dog..." },
+    { title: "Tomb Raider", img: "images/tombraider.jpg", description: "Reboot of the Tomb Raider series..." }
+  ],
+  rpg: [
+    { title: "The Witcher 3", img: "images/thewitcher3.jpg", description: "You are Geralt of Rivia, mercenary monster slayer. Before you stands a war-torn, monster-infested continent you can explore at will. Your current contract? Tracking down Ciri — the Child of Prophecy, a living weapon that can alter the shape of the world.", audio: "audio/witcher3.mp3" },
+    { title: "Skyrim", img: "images/skyrim.jpg", description: "Winner of more than 200 Game of the Year Awards, The Elder Scrolls V: Skyrim Special Edition brings the epic fantasy to life in stunning detail. The Special Edition includes the critically acclaimed game and add-ons with all-new features.", audio: "audio/skyrim.mp3" }
+  ],
+  strategy: [
+    { title: "Age of Empires IV", img: "images/ageiv.jpg", description: "Real-time strategy by Relic Entertainment..." },
+    { title: "Starcraft II", img: "images/starcraft2.jpg", description: "Military sci-fi RTS by Blizzard..." }
+  ]
+};
+
+const container = document.getElementById('gamesContainer');
+
+if (games[genre]) {
+  games[genre].forEach((game, i) => {
+    const col = document.createElement('div');
+    col.classList.add('col-md-4');
+    col.setAttribute('data-aos', 'fade-up');
+    col.setAttribute('data-aos-delay', i*100);
+    col.innerHTML = `
+      <a href="game.html?title=${encodeURIComponent(game.title)}" class="text-decoration-none text-white">
+        <div class="card p-3 h-100 game-card">
+          <img src="${game.img}" class="card-img-top" alt="${game.title}">
+          <div class="card-body">
+            <h5 class="card-title">${game.title}</h5>
+            <p class="card-text">${game.description}</p>
+          </div>
+          ${game.audio ? `<audio src="${game.audio}"></audio>` : ""}
+        </div>
+      </a>
+    `;
+    container.appendChild(col);
+  });
+
+  document.querySelectorAll('.game-card').forEach(card => {
+    const audio = card.querySelector('audio');
+    if (!audio) return;
+
+    card.addEventListener('mouseenter', () => {
+      audio.currentTime = 0;
+      audio.play();
+    });
+
+    card.addEventListener('mouseleave', () => {
+      audio.pause();
+      audio.currentTime = 0;
+    });
+  });
+} else {
+  container.innerHTML = '<p>No games found for this genre.</p>';
+}
+
+</script>
+
+<script>
+    // Создаём массив всех игр
+const allGames = [];
+for (let genreKey in games) {
+  games[genreKey].forEach(game => {
+    allGames.push({ ...game, genre: genreKey });
+  });
+}
+
+// Поиск
+const searchInput = document.getElementById('searchInput');
+const searchResults = document.getElementById('searchResults');
+const gamesContainer = document.getElementById('gamesContainer');
+
+searchInput.addEventListener('input', () => {
+  const query = searchInput.value.toLowerCase().trim();
+  
+  if (!query) {
+    gamesContainer.style.display = 'flex';
+    searchResults.style.display = 'none';
+    return;
+  }
+
+  gamesContainer.style.display = 'none';
+  searchResults.style.display = 'flex';
+  searchResults.innerHTML = '';
+
+  const filtered = allGames.filter(game =>
+    game.title.toLowerCase().includes(query) ||
+    game.description.toLowerCase().includes(query) ||
+    game.genre.toLowerCase().includes(query)
+  );
+
+  if (filtered.length === 0) {
+    searchResults.innerHTML = '<p class="text-white">No games found.</p>';
+    return;
+  }
+
+  filtered.forEach(game => {
+    const col = document.createElement('div');
+    col.classList.add('col-md-4');
+    col.innerHTML = `
+      <a href="game.html?title=${encodeURIComponent(game.title)}" class="text-decoration-none text-white">
+        <div class="card p-3 h-100 game-card">
+          <img src="${game.img}" class="card-img-top" alt="${game.title}">
+          <div class="card-body">
+            <h5 class="card-title">${game.title}</h5>
+            <p class="card-text">${game.description}</p>
+            <small class="text-muted">Category: ${game.genre.toUpperCase()}</small>
+          </div>
+          ${game.audio ? `<audio src="${game.audio}"></audio>` : ""}
+        </div>
+      </a>
+    `;
+    searchResults.appendChild(col);
+  });
+});
+
+</script>
+
+</body>
+</html>
