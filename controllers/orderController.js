@@ -1,5 +1,6 @@
 import Order from "../models/Order.js";
 import Game from "../models/Game.js";
+import mongoose from "mongoose";
 
 export const createOrder = async (req, res) => {
   try {
@@ -9,7 +10,10 @@ export const createOrder = async (req, res) => {
       return res.status(400).json({ message: "game_id is required." });
     }
 
-    const game = await Game.findById(game_id);
+    const isObjectId = mongoose.Types.ObjectId.isValid(game_id);
+    const game = isObjectId
+      ? await Game.findById(game_id)
+      : await Game.findOne({ title: game_id });
     if (!game) {
       return res.status(404).json({ message: "Game not found." });
     }
